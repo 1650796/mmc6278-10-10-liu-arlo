@@ -16,7 +16,11 @@ const POKEMON_DATA = {
 
 describe('Server Routes', () => {
   describe('GET / - pokemon form', () => {
-    it('should return 200 status')
+    it('should return 200 status', async () => {
+      await request(app)
+        .get('/')
+        .expect(200)
+    })
     it('should return content-type html header', async () => {
       await request(app)
         .get('/')
@@ -70,8 +74,7 @@ describe('Server Routes', () => {
       expect(pokeStub.calledWith('banana'))
       const {window: { document } } = new JSDOM(res.text)
       const img = document.querySelector("img")
-      expect(img).to.exist
-      expect(img.src).to.eq(`${sprite}`)
+      expect(img.src).to.include(POKEMON_DATA.sprite)
     })
     it('/pokemon?name=pokemonName should render pokemon types', async () => {
       const res = await request(app)
@@ -80,7 +83,7 @@ describe('Server Routes', () => {
       expect(pokeStub.calledWith('banana'))
       const {window: { document } } = new JSDOM(res.text)
       const typesEl = document.querySelector('[data-test-id="types"')
-      expect(typesEl.textContent).to.include(POKEMON_DATA.types)
+      expect(typesEl.textContent).to.include(POKEMON_DATA.types.join(", "))
     })
     it('/pokemon?name=pokemonName should render pokemon height', async () => {
       const res = await request(app)
