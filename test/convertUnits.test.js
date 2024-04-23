@@ -29,11 +29,11 @@ describe('unit conversion helpers', () => {
     })
     // Height of Snorlax
     it('should convert 21 decimeters to "6 feet 10 inches"', () => {
-      expect(getFeetAndInches(15)).to.eq('6 feet 10 inches')
+      expect(getFeetAndInches(21)).to.eq('6 feet 10 inches')
     })
     // Height of Gyarados
     it('should convert 65 decimeters to "21 feet 3 inches"', () => {
-      expect(getFeetAndInches(15)).to.eq('21 feet 3 inches')
+      expect(getFeetAndInches(65)).to.eq('21 feet 3 inches')
     })
   })
 })
